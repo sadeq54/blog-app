@@ -83,19 +83,28 @@ Add DATABASE_URL as an environment variable in the Vercel dashboard.
 <h2 style="color:#6B46C1;">📁 Project Structure</h2>
 
 blog-app/
+├── components/
+│   ├── Footer.tsx
+│   ├── Header.tsx
 ├── src/
 │   ├── app/
-│   │   ├── (home)/page.tsx
-│   │   ├── (post)/post/[id]/page.tsx
+│   │   ├── (home)/
+│   │   │   ├── page.tsx
+│   │   │   ├── loading.tsx
+│   │   ├── (post)/
+│   │   │   ├── post/
+│   │   │   │   ├── [id]/
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   ├── loading.tsx
 │   │   ├── layout.tsx
-│   │   ├── Footer.tsx
-│   ├── lib/actions.ts
-│   ├── lib/types.ts
+│   │   ├── globals.css
+│   ├── lib/
+│   │   ├── actions.ts
+│   │   ├── types.ts
 ├── .env.local
 ├── next.config.mjs
 ├── package.json
 ├── README.md
-
 
 <h2 style="color:#6B46C1;"> Contributing</h2> <ol> <li>Fork the repository</li> <li>Create your feature branch: <code>git checkout -b feature/awesome-feature</code></li> <li>Commit changes: <code>git commit -m "Add awesome feature"</code></li> <li>Push to branch: <code>git push origin feature/awesome-feature</code></li> <li>Open a pull request</li> </ol>
 
