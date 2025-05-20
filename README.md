@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center" style="color:#6B46C1;">✨ Simple Blog ✨</h1>
 
-## Getting Started
+<p align="center">
+  A modern blog built with <strong>Next.js (App Router)</strong>, <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and <strong>Neon</strong> for PostgreSQL storage. 
+  It fetches posts from <code>JSONPlaceholder</code>, caches them in a Neon database, and features animations with Framer Motion & GSAP.
+</p>
 
-First, run the development server:
+<hr/>
 
-```bash
+<h2 style="color:#6B46C1;"> Features</h2>
+
+<ul>
+  <li><strong>Homepage:</strong> Animated post cards with search, category, author, and date filters.</li>
+  <li><strong>Post Pages:</strong> Client-side fetched post details with author and category metadata.</li>
+  <li><strong>Database:</strong> Neon PostgreSQL caches posts with <code>title</code>, <code>body</code>, <code>author_name</code>, <code>category</code>, etc.</li>
+  <li><strong>Styling:</strong> Clean Tailwind design with <code>bg-gray-50</code> and <code>text-purple-600</code>.</li>
+  <li><strong>Footer:</strong> Responsive footer with logo, navigation, and social links.</li>
+</ul>
+
+<h2 style="color:#6B46C1;"> Prerequisites</h2>
+
+<ul>
+  <li>Node.js 18+</li>
+  <li>npm 8+</li>
+  <li>Neon Account</li>
+  <li>Git & VS Code</li>
+</ul>
+
+<h2 style="color:#6B46C1;"> Setup Neon Database</h2>
+
+<ol>
+  <li>Create a project in <a href="https://neon.tech/" target="_blank">Neon Console</a>.</li>
+  <li>Copy the connection string (<code>postgres://...</code>).</li>
+  <li>Open SQL Editor and run:</li>
+</ol>
+
+```sql
+DROP TABLE IF EXISTS posts;
+CREATE TABLE posts (
+    id SERIAL PRIMARY KEY,
+    jsonplaceholder_id INTEGER UNIQUE,
+    title VARCHAR(255),
+    body TEXT,
+    user_id INTEGER,
+    image_url VARCHAR(255),
+    thumbnail_url VARCHAR(255),
+    author_name VARCHAR(100),
+    category VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+<h2 style="color:#6B46C1;">⚙️ Local Setup</h2>
+
+# Clone project
+git clone https://github.com/&lt;your-username&gt;/blog-app.git
+cd blog-app
+
+# Install dependencies
+npm install
+
+# Add environment variables
+touch .env.local
+# Add DATABASE_URL inside it
+
+<h2 style="color:#6B46C1;"> Run the App</h2>
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+npm run dev
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit http://localhost:3000 and test the homepage, post detail page, and footer.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<h2 style="color:#6B46C1;">🧪 Verify & Troubleshoot</h2> <ul> <li>Ensure Footer is imported correctly (case-sensitive)</li> <li>Check Neon DB using SQL Editor</li> <li>Debug any database or fetch issues in <code>src/lib/actions.ts</code></li> <li>Clear Next.js cache if needed: <code>rm -rf .next</code></li> </ul> <h2 style="color:#6B46C1;">🌐 Deployment (Vercel)</h2>
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+git push origin main
+vercel --prod
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Add DATABASE_URL as an environment variable in the Vercel dashboard.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<h2 style="color:#6B46C1;">📁 Project Structure</h2>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+blog-app/
+├── src/
+│   ├── app/
+│   │   ├── (home)/page.tsx
+│   │   ├── (post)/post/[id]/page.tsx
+│   │   ├── layout.tsx
+│   │   ├── Footer.tsx
+│   ├── lib/actions.ts
+│   ├── lib/types.ts
+├── .env.local
+├── next.config.mjs
+├── package.json
+├── README.md
+
+
+<h2 style="color:#6B46C1;"> Contributing</h2> <ol> <li>Fork the repository</li> <li>Create your feature branch: <code>git checkout -b feature/awesome-feature</code></li> <li>Commit changes: <code>git commit -m "Add awesome feature"</code></li> <li>Push to branch: <code>git push origin feature/awesome-feature</code></li> <li>Open a pull request</li> </ol>
+
+
+<h3 align="center" style="color:#6B46C1;">Built with using Next.js, Tailwind, and Neon</h3>
