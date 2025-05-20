@@ -8,6 +8,19 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'alphabetsmarketing.jo',
+        port: '',
+        pathname: '/**',
+      },
+{
+  protocol: 'https',
+  hostname: 'itchronicles.com',
+  port: '',
+  pathname: '/wp-content/uploads/**',
+}
+
     ],
   },
 };
