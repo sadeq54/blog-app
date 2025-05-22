@@ -7,16 +7,24 @@ import { Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cachePosts } from '@/lib/actions';
 import { PostWithImage } from '@/lib/types';
+import LoadingUiSkeletonHome from '../../../components/LoadingUiSkeletonHome';
 
 export default function HomePage() {
     const [posts, setPosts] = useState<PostWithImage[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [loading, setLoading] = useState(true);
 
     // Fetch posts on mount
     useEffect(() => {
         async function fetchPosts() {
-            const fetchedPosts = await cachePosts();
-            setPosts(fetchedPosts);
+            try {
+                const fetchedPosts = await cachePosts();
+                setPosts(fetchedPosts);
+            } catch (error) {
+                console.error('Failed to fetch posts:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         fetchPosts();
     }, []);
@@ -27,6 +35,10 @@ export default function HomePage() {
             post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.body.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    if (loading) {
+        return <LoadingUiSkeletonHome />;
+    }
 
     return (
         <div className="min-h-screen bg-gray-50">
