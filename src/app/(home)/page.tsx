@@ -1,22 +1,16 @@
-'use client'; // Client component for search and animations
+'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cachePosts } from '@/lib/actions';
 import { PostWithImage } from '@/lib/types';
-
-// Register GSAP ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
     const [posts, setPosts] = useState<PostWithImage[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const postRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     // Fetch posts on mount
     useEffect(() => {
@@ -27,29 +21,6 @@ export default function HomePage() {
         fetchPosts();
     }, []);
 
-    // GSAP scroll animations
-    useEffect(() => {
-        postRefs.current.forEach((el) => {
-            if (el) {
-                gsap.fromTo(
-                    el,
-                    { opacity: 0, y: 50 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 80%',
-                            toggleActions: 'play none none none',
-                        },
-                    }
-                );
-            }
-        });
-    }, [posts]);
-
     // Filter posts based on search query
     const filteredPosts = posts.filter(
         (post) =>
@@ -59,9 +30,6 @@ export default function HomePage() {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-                
-
             <div className="container mx-auto px-4 py-12">
                 {/* Hero Section */}
                 <div className="text-center mb-12">
