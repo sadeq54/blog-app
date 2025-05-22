@@ -10,7 +10,7 @@ export default function Footer() {
                     <div className="flex flex-col items-center md:items-start">
                         <Link href="/" className="flex items-center mb-4">
                             <Image
-                                src="/placeholder.svg?height=40&width=120"
+                                src="/logo.jpg"
                                 alt="Blog Logo"
                                 width={120}
                                 height={40}
