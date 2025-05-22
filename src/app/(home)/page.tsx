@@ -104,7 +104,7 @@ export default function HomePage() {
                                         <div className="flex items-center">
                                             <div className="w-8 h-8 rounded-full overflow-hidden mr-3">
                                                 <Image
-                                                    src="/placeholder.svg?height=100&width=100"
+                                                    src="https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                                     alt={post.author_name || 'Unknown Author'}
                                                     width={100}
                                                     height={100}

@@ -14,12 +14,18 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-{
-  protocol: 'https',
-  hostname: 'itchronicles.com',
-  port: '',
-  pathname: '/wp-content/uploads/**',
-}
+      {
+        protocol: 'https',
+        hostname: 'itchronicles.com',
+        port: '',
+        pathname: '/wp-content/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
 
     ],
   },

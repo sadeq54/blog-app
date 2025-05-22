@@ -36,7 +36,7 @@ export default function PostPage() {
         fetchPost();
 
     }, [id]);
-        
+
     if (!post) {
         return (
             <div className="min-h-screen bg-gray-50">
@@ -51,7 +51,7 @@ export default function PostPage() {
                     </motion.div>
                 </main>
             </div>
-        ); 
+        );
     }
 
     const relatedPosts = allPosts.filter((p) => p.category === post.category && p.id !== post.id);
@@ -85,7 +85,7 @@ export default function PostPage() {
                     <div className="flex items-center mb-8">
                         <div className="w-10 h-10 rounded-full overflow-hidden mr-4">
                             <Image
-                                src="/placeholder.svg?height=100&width=100"
+                                src="https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 alt={post.author_name || 'Unknown Author'}
                                 width={100}
                                 height={100}
@@ -134,39 +134,41 @@ export default function PostPage() {
 
 
                     {/* Related posts */}
-                    <div className="mb-12">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">Related posts</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {relatedPosts.map((relatedPost) => (
-                                <Link key={relatedPost.id} href={`/post/${relatedPost.id}`} className="group block">
-                                    <motion.div
-                                        className="bg-white rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-shadow duration-300"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5 }}
-                                    >
-                                        <div className="relative h-40 overflow-hidden">
-                                            <Image
-                                                src={relatedPost.imageUrl}
-                                                alt={relatedPost.title}
-                                                width={600}
-                                                height={400}
-                                                className="object-cover w-full h-full"
-                                            />
-                                        </div>
-                                        <div className="p-4">
-                                            <div className="text-purple-600 text-xs font-medium mb-2">
-                                                {relatedPost.category}
+                    {relatedPosts.length > 0 && (
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-6">Related Posts</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {relatedPosts.map((relatedPost) => (
+                                    <Link key={relatedPost.id} href={`/post/${relatedPost.id}`} className="group block">
+                                        <motion.div
+                                            className="bg-white rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-shadow duration-300 h-64" // Fixed height for card
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5 }}
+                                        >
+                                            <div className="relative h-40 overflow-hidden">
+                                                <Image
+                                                    src={relatedPost.imageUrl}
+                                                    alt={relatedPost.title}
+                                                    width={600}
+                                                    height={400}
+                                                    className="object-cover w-full h-full"
+                                                />
                                             </div>
-                                            <h3 className="text-gray-800 font-bold group-hover:text-purple-600 transition-colors duration-200">
-                                                {relatedPost.title}
-                                            </h3>
-                                        </div>
-                                    </motion.div>
-                                </Link>
-                            ))}
+                                            <div className="p-4 flex flex-col">
+                                                <div className="text-purple-600 text-xs font-medium mb-2 truncate">
+                                                    {relatedPost.category}
+                                                </div>
+                                                <h3 className="text-gray-800 font-bold text-base group-hover:text-purple-600 transition-colors duration-200 line-clamp-2">
+                                                    {relatedPost.title}
+                                                </h3>
+                                            </div>
+                                        </motion.div>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </motion.div>
             </main>
         </div>
